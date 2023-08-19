@@ -15,7 +15,7 @@ window.onscroll = () => {
     let header = document.querySelector('header');
 sections.forEach(sec => {
     let top =window.scrollY;
-    let offset = sec.offsetTop = 100;
+    let offset = sec.offsetTop - 100;
     let height = sec.offsetHeight;
     let id = sec.getAttribute('id');
 
@@ -40,3 +40,48 @@ header.classList.toggle('sticky', window.scrollY > 100);
     footer.classList.toggle('show-animate', this.innerHeight + this.scrollY >= document.scrollingElement.
     scrollHeight);
 }
+  
+let FullName= document.getElementById("FullName");
+let Email = document.getElementById("Email");
+let Password = document.getElementById("Password");
+let MobileNunmber = document.getElementById("Nunmber");
+let YourMessage = document.getElementById("Your Message");
+let Sumbit = document.getElementById("Sumbit");
+
+console.log(FullName,Email,Nunmber,Password,YourMessage,Sumbit)
+
+
+let dataPro;
+if(localStorage.Data != null){
+    dataPro = JSON.parse(localStorage.Data)
+}else{
+    dataPro = [];
+}
+
+
+Sumbit.onclick = function(){
+    let newPro = {
+        FullName:FullName.value,
+        Email:Email.value,
+        Password:Password.value,
+        MobileNunmber:MobileNunmber.value,
+        YourMessage:YourMessage.value,
+    }
+    dataPro.push(newPro);
+    //save local storage
+    localStorage.setItem('Data', JSON.stringify(dataPro)  )
+    
+    clearData()
+}
+
+
+
+//clear inputs
+function clearData(){
+    FullName.value = '';
+    Email.value = '';
+    Password.value = '';
+    MobileNunmber.value = '';
+    YourMessage.value = '';
+}
+
